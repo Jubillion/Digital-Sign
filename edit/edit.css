@@ -1,0 +1,98 @@
+body {
+    font-family: "Arial", sans-serif;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+}
+.centered {
+    position: relative;
+    display: block;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+article {
+    display: block;
+    width: 90%;
+    margin: 5% auto;
+    border-radius: 5px;
+}
+
+#page1 > button {
+    background-color: #2ab62f;
+    text-shadow: 1px 1px 2px #00000084;
+    border: none;
+    color: white;
+    width: 100%;
+    margin: 2.5% 0;
+    padding: 2.5%;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+
+#page2 {
+    height: 500px;
+    overflow-y: auto;
+    background-color: #d4d4d4;
+}
+#nullOption {
+    --width: 100%;
+}
+.option {
+    width: 100%;
+    margin-bottom: 2em;
+}
+.option > h2 {
+    font-size: 1.5em;
+    text-align: center;
+    margin: 1em 0;
+}
+.option > h3 {
+    font-size: 1.2em;
+    margin: 0 5%;
+}
+.option p {
+    margin: 0 5% .5em;
+}
+.option li {
+    margin: 0;
+    margin-bottom: .5em;
+    width: 90%;
+}
+li.flyer-item {
+    list-style-type: none;
+}
+
+.option input[type=text], .option input[type=file] {
+    margin-left: 5%;
+    width: 65%;
+    height: 1.5em;
+    font-size: 12pt;
+}
+.option select {
+    margin-left: 5%;
+    width: 40%;
+    height: 1.5em;
+    font-size: 14pt;
+    margin-bottom: 0.5em;
+}
+.option input[type=time] {
+    float: right;
+    margin-right: 5%;
+    width: 45%;
+    height: 1.5em;
+    font-size: 12pt;
+}
+.option .new {
+    float: right;
+    margin-right: 5%;
+    width: 20%;
+    font-size: 15pt;
+    height: 1.5em;
+}

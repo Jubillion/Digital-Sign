@@ -1,0 +1,91 @@
+body {
+    background-color: var(--background);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+
+    background: url('https://tse3.mm.bing.net/th/id/OIP.0Ifjra8wvUrFELY32R3J_QAAAA') no-repeat center center fixed;
+    background-size: cover;
+    }
+
+:root {
+    --foreground: #ffffff85;
+    --background: salmon;
+}
+
+#sidebar, #flyers, #news {
+    --borders: 1vw;
+    --ratio: 0.3;
+    --footer-height: 10vh;
+
+    position: absolute;
+    border-width: 0;
+    background-color: var(--foreground);
+    height: calc(100vh - 3 * var(--borders) - var(--footer-height));
+    top: var(--borders);
+    backdrop-filter: blur(5px);
+}
+#sidebar {
+    left: var(--borders);
+    width: calc(var(--ratio) * (100vw - 3 * var(--borders)));
+}
+#flyers {
+    left: calc(2 * var(--borders) + var(--ratio) * (100vw - 3 * var(--borders)));
+    width: calc((1 - var(--ratio)) * (100vw - 3 * var(--borders)));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#news {
+    left: var(--borders);
+    bottom: var(--borders);
+    top: auto;
+    width: calc(100vw - 2 * var(--borders));
+    height: var(--footer-height) !important;
+    overflow-x: hidden;
+}
+
+h2 {
+    font-size: 2em;
+    margin: 1em 0 0.5em 0;
+}
+.centered {
+    text-align: center;
+}
+hr {
+    border: 0.5px solid black;
+}
+
+.cal-item {
+    margin: 0.5em 0;
+    padding: 0.5em;
+}
+.weekday {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+.day-items > li {
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+#news-text {
+    animation: scroll-left 20s linear infinite;
+    font-size: 2em;
+    line-height: var(--footer-height);
+    white-space: nowrap;
+    display: inline-block;
+}
+@keyframes scroll-left {
+    0% {
+        transform: translateX(calc(100vw - 2 * var(--borders)));
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+#flyer-image {
+    max-height: 100%;
+    max-width: 100%;
+}

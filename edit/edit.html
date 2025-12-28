@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Edit Sign</title>
+		<link rel="stylesheet" href="/edit.css" />
+		<script src="/edit.js"></script>
+	</head>
+	<body>
+		<h1>Edit Digital Sign</h1>
+		<hr />
+		<article id="page1">
+			<button onclick="select(1)">Edit Calendar</button>
+			<button onclick="select(2)">Edit Flyers</button>
+			<button onclick="select(3)">Edit Announcements</button>
+		</article>
+		<article id="page2">
+			<div class="centered" id="nullOption">No page selected.</div>
+			<div class="option" id="calendar">
+				<h2>Calendar</h2>
+				<p>Click on one of the calendar events below to delete it.</p>
+				<h3 id="h-sunday">Sunday</h3>
+				<ul class="calendar-items" id="sunday"></ul>
+				<h3 id="h-monday">Monday</h3>
+				<ul class="calendar-items" id="monday"></ul>
+				<h3 id="h-tuesday">Tuesday</h3>
+				<ul class="calendar-items" id="tuesday"></ul>
+				<h3 id="h-wednesday">Wednesday</h3>
+				<ul class="calendar-items" id="wednesday"></ul>
+				<h3 id="h-thursday">Thursday</h3>
+				<ul class="calendar-items" id="thursday"></ul>
+				<h3 id="h-friday">Friday</h3>
+				<ul class="calendar-items" id="friday"></ul>
+				<h3 id="h-saturday">Saturday</h3>
+				<ul class="calendar-items" id="saturday"></ul>
+				<select id="event-day">
+					<option>Sunday</option>
+					<option>Monday</option>
+					<option>Tuesday</option>
+					<option>Wednesday</option>
+					<option>Thursday</option>
+					<option>Friday</option>
+					<option>Saturday</option>
+				</select>
+				<input id="event-time" type="time" value="08:00" />
+				<br />
+				<input type="text" id="event-text" placeholder="New event" />
+				<button class="new" onclick="newCalendarEvent()">+</button>
+			</div>
+			<div class="option" id="flyers">
+				<h2>Flyers</h2>
+				<p>Click on one of the flyers below to delete it.</p>
+				<ul id="flyers-items"></ul>
+				<input type="file" id="flyer-file" />
+				<button class="new" onclick="newFlyer()">+</button>
+			</div>
+			<div class="option" id="announcements">
+				<h2>Announcements</h2>
+				<p>Click on one of the announcements below to delete it.</p>
+				<ul id="announcements-items"></ul>
+				<input type="text" id="announce-text" placeholder="New announcement" />
+				<button class="new" onclick="newAnnouncement()">+</button>
+			</div>
+			<script>
+				select(0);
+				updateFromDB();
+				setInterval(updateFromDB, 5e3);
+			</script>
+		</article>
+	</body>
+</html>
