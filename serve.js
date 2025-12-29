@@ -4,7 +4,7 @@
         to serve the files for the digital sign.
 *********************************************************/
 
-const routes = {
+const ROUTES = {
 	"/": "./edit/edit.html",
 	"/script.js": "./index/index.js",
 	"/style.css": "./index/index.css",
@@ -18,9 +18,9 @@ Bun.serve({
 	port: 8080,
 	async fetch(req) {
 		let path = new URL(req.url).pathname;
-		if (routes[path]) return new Response(Bun.file(routes[path]));
-		if (!path.endsWith("/") && routes[path + "/"])
-			return new Response.redirect(req.url + "/");
+		if (ROUTES[path]) return new Response(Bun.file(ROUTES[path]));
+		if (!path.endsWith("/") && ROUTES[path + "/"])
+			return Response.redirect(path + "/");
 
 		if (path.startsWith("/add/")) {
 			return addToDB(
@@ -46,6 +46,8 @@ Bun.serve({
 	},
 });
 
+const IMAGE_ERROR = new TypeError("Invalid image type.");
+
 async function addToDB(path, img, imgType) {
 	let db = await Bun.file("./db.json").json();
 	const params = path.split("/");
@@ -56,7 +58,12 @@ async function addToDB(path, img, imgType) {
 			// sort chronologically later
 			break;
 		case "flyers":
-			db.flyers.push(await newImage(img, imgType));
+			try {
+				db.flyers.push(await newImage(img, imgType));
+			} catch (e) {
+				if (e === IMAGE_ERROR) return new Response("Invalid image type.", { status: 400 });
+				throw e;
+			}
 			break;
 		case "announcements":
 			db.news.push(decodeURIComponent(params[1]));
@@ -74,7 +81,7 @@ async function newImage(img, type) {
 	if (["image/png", "image/jpg", "image/jpeg", "image/gif"].includes(type)) {
 		fileName = `${UUID}.${type.split("/")[1]}`;
 		Bun.write(`./images/flyers/${fileName}`, img);
-	} else throw new Error("Invalid image type.");
+	} else throw IMAGE_ERROR;
 	return fileName;
 }
 
